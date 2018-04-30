@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+.mat-figure{
+  align-items: start !important;
+}
+
+.map-list{
+  height: inherit;
+  overflow: auto;
+}
+
+.mat-list-item-content{
+  justify-content: space-between;
+}

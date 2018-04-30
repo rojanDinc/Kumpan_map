@@ -1,0 +1,39 @@
+.color{
+
+}
+agm-map{
+  width: 100%;
+  height: 50vh;
+}
+
+mat-card{
+  width: 100%;
+  margin: 20px;
+}
+
+#drawer{
+  width: 250px;
+  background: #485367;
+}
+
+#list-card{
+  height: auto;
+}
+
+.mat-list{
+  height: inherit;
+  overflow: auto;
+}
+
+.item{
+  display: inline-block;
+}
+.item-title{
+  float: left;
+}
+.item-btn{
+  color: #fff;
+  background-color: #f53b57;
+  float: right;
+}
+

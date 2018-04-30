@@ -1,0 +1,39 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" opened="true" id="drawer">
+  </mat-drawer>
+  
+  <mat-drawer-content>
+    <mat-toolbar>Kumpan map</mat-toolbar>
+    <mat-grid-list cols="12" rowHeight="fit" style="height: 100vh;">
+      
+      <!-- List container -->
+      <mat-grid-tile colspan="4" class="color">
+        <mat-card id="list-card">
+          <mat-card-title>Your Places</mat-card-title>
+          <mat-card-content style="height: calc(100% - 40px);">
+            <mat-list class="mat-list">
+              <mat-list-item *ngFor="let place of places" (click)="removePlace(place)">
+                <div class="item item-title">{{place}}</div>
+                <button class="item item-btn" mat-raised-button>Delete</button>
+                <mat-divider></mat-divider>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <!-- .END List container -->
+
+      <!-- Map container -->
+      <mat-grid-tile colspan="8">
+        <mat-card>
+          <mat-card-content>
+            <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="_onMapClick($event)">
+              <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+            </agm-map>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <!-- .END Map container -->
+    </mat-grid-list>
+  </mat-drawer-content>
+</mat-drawer-container>
