@@ -48,3 +48,10 @@ mat-card{
   float: right;
 }
 
+.btn-margin{
+  margin: 5px;
+}
+
+.hidden{
+  display: none;
+}

@@ -15,7 +15,7 @@
               <mat-list-item *ngFor="let place of places">
                 <div class="item-title">{{place.name}}</div>
                 <div>
-                  <button class="goto-btn" mat-raised-button>Go to!</button>
+                  <button class="goto-btn" mat-raised-button (click)="goToPlace(place)">Go to!</button>
                   <button class="item-btn" mat-raised-button (click)="removePlace(place)">Delete</button>
                 </div>
                 <mat-divider></mat-divider>
@@ -36,10 +36,23 @@
               [longitude]="lng"
               [zoom]="11"
               (mapClick)="_onMapClick($event)">
-              <agm-marker 
-                *ngFor="let place of places;" 
-                [latitude]="place.lat" 
-                [longitude]="place.lng"></agm-marker>
+              <!-- Marker for new places -->
+              <agm-info-window [latitude]="lat" [longitude]="lng" [zIndex]="188"  #infoWindow>
+                  <mat-form-field>
+                      <input #placeInput autofocus matInput placeholder="Place name?" (keyup.enter)="onInputAdd(placeInput.value)">
+                  </mat-form-field>
+                  <button class="btn-margin" (click)="onInputAdd(placeInput.value)" mat-raised-button>Add</button>
+              </agm-info-window>
+
+              <!-- Marker for saved places -->
+              <agm-info-window
+                  *ngFor="let place of places;" 
+                  [latitude]="place.lat" 
+                  [longitude]="place.lng"
+                  [isOpen]="true"
+                  [zIndex]="100"
+                >{{place.name}}
+              </agm-info-window>
             </agm-map>
           </mat-card-content>
         </mat-card>

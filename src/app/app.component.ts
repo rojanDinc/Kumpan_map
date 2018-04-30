@@ -1,5 +1,6 @@
-import { Component, Injectable, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { MouseEvent, GoogleMapsAPIWrapper, MapTypeStyle } from '@agm/core';
+import { Component, Injectable, ViewChild, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
+import { MouseEvent, GoogleMapsAPIWrapper, MapTypeStyle, AgmMap, AgmInfoWindow } from '@agm/core';
+import { ValueTransformer } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-root',
@@ -7,60 +8,67 @@ import { MouseEvent, GoogleMapsAPIWrapper, MapTypeStyle } from '@agm/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild('map', {read: ElementRef}) map: ElementRef;
-
-  title = 'My first AGM project';
+  @ViewChild('map', {read: AgmMap}) map: AgmMap;
+  @ViewChild('infoWindow', {read: AgmInfoWindow}) infoWindow: AgmInfoWindow;
+  @ViewChild('placeInput') placeInput: ElementRef;
   lat = 59.329324;
   lng = 18.068581;
 
   places: Place[] = [
     {
       name: 'Rojans place',
-      address: 'Duvgatan 21',
-      lat: 51.678418,
-      lng: 7.809007,
+      lat: 59.329324,
+      lng: 18.068581,
     },
     {
       name: 'Bredäng',
-      address: '',
       lat: 59.309002,
       lng: 17.930565,
     },
     {
       name: 'Fittja',
-      address: '',
       lat: 59.247547,
       lng: 17.861372,
     }
   ];
 
-  constructor() {
-  }
+  constructor(private renderer: Renderer2) {}
 
   ngAfterViewInit() {
-    // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    // Add 'implements AfterViewInit' to the class.
   }
 
   _onMapClick($event: MouseEvent) {
+    this.infoWindow.open();
+    this.lat = $event.coords.lat;
+    this.lng = $event.coords.lng;
+  }
+
+  onInputAdd(value) {
     this.places.push({
-      name: 'some',
-      address: 'add',
-      lat: $event.coords.lat,
-      lng: $event.coords.lng
+      name: value,
+      lat: this.lat,
+      lng: this.lng,
     });
+    this.renderer.setProperty(this.placeInput.nativeElement, 'value', '');
+    this.infoWindow.close();
+  }
+
+  goToPlace(place) {
+    this.map.latitude = place.lat;
+    this.map.longitude = place.lng;
+    this.map.triggerResize();
   }
 
   removePlace(place) {
     const i = this.places.indexOf(place);
     this.places.splice(i, 1);
   }
+
 }
 
 // For type safety
 interface Place {
   name: string;
-  address: string;
   lat: number;
   lng: number;
 }
