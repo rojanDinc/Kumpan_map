@@ -6,6 +6,12 @@ agm-map{
   height: 50vh;
 }
 
+button{
+  width: fit-content;
+  padding: 0px 10px;
+  min-width: 0;
+}
+
 mat-card{
   width: 100%;
   margin: 20px;
@@ -29,8 +35,13 @@ mat-card{
   display: inline-block;
 }
 .item-title{
-  float: left;
+  width: 35.7px;
 }
+
+.goto-btn{
+  margin-right: 5px;
+}
+
 .item-btn{
   color: #fff;
   background-color: #f53b57;

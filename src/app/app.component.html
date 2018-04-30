@@ -10,11 +10,14 @@
       <mat-grid-tile colspan="4" class="color">
         <mat-card id="list-card">
           <mat-card-title>Your Places</mat-card-title>
-          <mat-card-content style="height: calc(100% - 40px);">
+          <mat-card-content style="max-height: 60vh;">
             <mat-list class="mat-list">
-              <mat-list-item *ngFor="let place of places" (click)="removePlace(place)">
-                <div class="item item-title">{{place}}</div>
-                <button class="item item-btn" mat-raised-button>Delete</button>
+              <mat-list-item *ngFor="let place of places">
+                <div class="item-title">{{place.name}}</div>
+                <div>
+                  <button class="goto-btn" mat-raised-button>Go to!</button>
+                  <button class="item-btn" mat-raised-button (click)="removePlace(place)">Delete</button>
+                </div>
                 <mat-divider></mat-divider>
               </mat-list-item>
             </mat-list>
@@ -27,8 +30,16 @@
       <mat-grid-tile colspan="8">
         <mat-card>
           <mat-card-content>
-            <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="_onMapClick($event)">
-              <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+            <agm-map 
+              #map
+              [latitude]="lat" 
+              [longitude]="lng"
+              [zoom]="11"
+              (mapClick)="_onMapClick($event)">
+              <agm-marker 
+                *ngFor="let place of places;" 
+                [latitude]="place.lat" 
+                [longitude]="place.lng"></agm-marker>
             </agm-map>
           </mat-card-content>
         </mat-card>
