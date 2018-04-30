@@ -4,6 +4,10 @@ import { NgModule } from '@angular/core';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule, GoogleMapsAPIWrapper, AgmMap } from '@agm/core';
+import { PersistenceModule } from 'angular-persistence';
+
+// Services
+import { StorageService } from './storage.service';
 
 // Components
 import { AppComponent } from './app.component';
@@ -20,9 +24,10 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDzUfBbEi4kaUSaOkTlWnDLYA7bJ6rVtBU'
-    })
+    }),
+    PersistenceModule,
   ],
-  providers: [GoogleMapsAPIWrapper],
+  providers: [GoogleMapsAPIWrapper, StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
