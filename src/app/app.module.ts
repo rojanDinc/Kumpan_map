@@ -5,19 +5,16 @@ import { NgModule } from '@angular/core';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule, GoogleMapsAPIWrapper, AgmMap } from '@agm/core';
-import { PersistenceModule } from 'angular-persistence';
-import { StoreModule } from '@ngrx/store';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { StoreModule, ActionReducerMap, ActionReducer, MetaReducer } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 // State handle
-
+import { reducer } from './reducers/places.reducer';
 
 // Components
 import { AppComponent } from './app.component';
 import { SearchPipe } from './pipes/search.pipe';
-import { reducer } from './reducers/places.reducer';
-
-
 
 @NgModule({
   declarations: [
@@ -31,17 +28,17 @@ import { reducer } from './reducers/places.reducer';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDzUfBbEi4kaUSaOkTlWnDLYA7bJ6rVtBU'
     }),
-    PersistenceModule,
     StoreModule.forRoot({
-      _places: reducer
+      _places: reducer,
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
-    })
-
+    }),
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [GoogleMapsAPIWrapper],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

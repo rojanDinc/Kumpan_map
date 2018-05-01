@@ -1,56 +1,67 @@
-<mat-drawer-container>
+<mat-drawer-container style="height:100vh;">
   <mat-drawer mode="side" opened="true" id="drawer">
   </mat-drawer>
   
   <mat-drawer-content>
     <mat-toolbar>Kumpan map</mat-toolbar>
-    <mat-grid-list cols="12" rowHeight="fit" style="height: 100vh;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4">
+            <mat-card id="list-card">
+                <mat-card-title>Your Places</mat-card-title>
+                <mat-card-content style="max-height: 60vh;">
+                  <mat-list class="mat-list">
+                    <mat-list-item *ngFor="let place of places | async; let i = index">
+                      <div class="item-title">{{place.name}}</div>
+                      <div>
+                        <button class="goto-btn" mat-raised-button (click)="goToPlace(place)">Go to!</button>
+                        <button class="item-btn" mat-raised-button (click)="removePlace(i)">Delete</button>
+                      </div>
+                      <mat-divider></mat-divider>
+                    </mat-list-item>
+                  </mat-list>
+                </mat-card-content>
+              </mat-card>
+        </div>
+        <div class="col-lg-8">
+            <mat-card>
+                <mat-card-content>
+                  <agm-map 
+                    #map
+                    [latitude]="lat" 
+                    [longitude]="lng"
+                    [zoom]="11"
+                    (mapClick)="_onMapClick($event)">
+                    <!-- Marker for new places -->
+                    <agm-info-window [latitude]="lat" [longitude]="lng" [zIndex]="188"  #infoWindow>
+                        <mat-form-field>
+                            <input 
+                              #placeInput
+                              autofocus
+                              matInput
+                              placeholder="Name of place"
+                              required
+                              [formControl]="placeFormControl"
+                              [errorStateMatcher]="matcher"
+                              (keyup.enter)="onInputAdd(placeInput.value)">
+                            <mat-error *ngIf="placeFormControl.hasError('pattern') && !placeFormControl.hasError('required')">
+                              Please enter a valid name
+                            </mat-error>
+                            <mat-error *ngIf="placeFormControl.hasError('required')">
+                              Name is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        <button [disabled]="placeFormControl.hasError('pattern') || placeFormControl.hasError('required')" class="btn-margin" (click)="onInputAdd(placeInput.value)" mat-raised-button>Save</button>
+                    </agm-info-window>
       
-      <!-- List container -->
-      <mat-grid-tile colspan="4" class="color">
-        <mat-card id="list-card">
-          <mat-card-title>Your Places</mat-card-title>
-          <mat-card-content style="max-height: 60vh;">
-            <mat-list class="mat-list">
-              <mat-list-item *ngFor="let place of places | async">
-                <div class="item-title">{{place.name}}</div>
-                <div>
-                  <button class="goto-btn" mat-raised-button (click)="goToPlace(place)">Go to!</button>
-                  <button class="item-btn" mat-raised-button (click)="removePlace(place)">Delete</button>
-                </div>
-                <mat-divider></mat-divider>
-              </mat-list-item>
-            </mat-list>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-      <!-- .END List container -->
+                    <!-- Marker for saved places -->
+                    <agm-info-window #markerWindow [latitude]="lat" [longitude]="lng" [isOpen]="false" [zIndex]="100">{{place_name}}</agm-info-window>
+                  </agm-map>
+                </mat-card-content>
+              </mat-card>
+        </div>
+      </div>
+    </div>
 
-      <!-- Map container -->
-      <mat-grid-tile colspan="8">
-        <mat-card>
-          <mat-card-content>
-            <agm-map 
-              #map
-              [latitude]="lat" 
-              [longitude]="lng"
-              [zoom]="11"
-              (mapClick)="_onMapClick($event)">
-              <!-- Marker for new places -->
-              <agm-info-window [latitude]="lat" [longitude]="lng" [zIndex]="188"  #infoWindow>
-                  <mat-form-field>
-                      <input #placeInput autofocus matInput placeholder="Place name?" (keyup.enter)="onInputAdd(placeInput.value)">
-                  </mat-form-field>
-                  <button class="btn-margin" (click)="onInputAdd(placeInput.value)" mat-raised-button>Save</button>
-              </agm-info-window>
-
-              <!-- Marker for saved places -->
-              <agm-info-window #markerWindow [latitude]="lat" [longitude]="lng" [isOpen]="false" [zIndex]="100">{{place_name}}</agm-info-window>
-            </agm-map>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-      <!-- .END Map container -->
-    </mat-grid-list>
   </mat-drawer-content>
 </mat-drawer-container>

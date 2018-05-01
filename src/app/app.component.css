@@ -11,7 +11,7 @@ button{
 
 mat-card{
   width: 100%;
-  margin: 20px;
+  margin-top: 20px;
 }
 
 #drawer{
@@ -48,4 +48,8 @@ mat-card{
 
 .hidden{
   display: none;
+}
+
+.tile{
+
 }
