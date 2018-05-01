@@ -9,9 +9,6 @@ import { PersistenceModule } from 'angular-persistence';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-// Services
-import { StorageService } from './services/storage.service';
-
 // State handle
 
 
@@ -44,7 +41,7 @@ import { reducer } from './reducers/places.reducer';
     })
 
   ],
-  providers: [GoogleMapsAPIWrapper, StorageService],
+  providers: [GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule {
