@@ -1,15 +1,18 @@
-import { StorageService } from './storage.service';
-import { Place } from './place';
-import { Component, Injectable, ViewChild, ElementRef, AfterViewInit, Renderer2, HostListener } from '@angular/core';
+import { AppState } from './models/app.state';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import { Place } from './models/place';
+import { Component, Injectable, ViewChild, ElementRef, AfterViewInit, Renderer2, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { MouseEvent, GoogleMapsAPIWrapper, MapTypeStyle, AgmMap, AgmInfoWindow } from '@agm/core';
-import { ValueTransformer } from '@angular/compiler/src/util';
+import * as PlacesActions from './actions/places.actions';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   // Binding html elements to use in code
   @ViewChild('map', {read: AgmMap}) map: AgmMap;
   @ViewChild('infoWindow', {read: AgmInfoWindow}) infoWindow: AgmInfoWindow;
@@ -20,19 +23,23 @@ export class AppComponent {
   private lat = 59.329324;
   private lng = 18.068581;
   private place_name: string;
+
   // Temp list for storing places from localstorage
-  private places: Place[];
+  places: Observable<Place>;
 
   /**
    * @param renderer
    * @param storage
    */
-  constructor(private renderer: Renderer2, private storage: StorageService) {
-    if (storage.getListItems() == null) {
-      this.places = [];
-    } else {
-      this.places = storage.getListItems();
-    }
+  constructor(
+    private renderer: Renderer2,
+    private store: Store<AppState>
+  ) {
+    this.places = store.select('_places');
+  }
+
+  ngOnInit(): void {
+    // this.store.dispatch(new PlacesActions.AddPlaces(this.storage.getListItems()));
   }
 
   /**
@@ -50,14 +57,15 @@ export class AppComponent {
    * @param value
    */
   onInputAdd(value) {
-    this.places.push({
-      name: value,
-      lat: this.lat,
-      lng: this.lng,
-    });
-    this.storage.updateStorage(this.places);
+
     this.renderer.setProperty(this.placeInput.nativeElement, 'value', '');
     this.infoWindow.close();
+
+    this.store.dispatch(new PlacesActions.AddPlace({
+      name: value,
+      lat: this.lat,
+      lng: this.lng
+    }));
   }
 
   /**
@@ -68,7 +76,6 @@ export class AppComponent {
     this.map.latitude = place.lat;
     this.map.longitude = place.lng;
     this.map.triggerResize();
-
     this.lat = place.lat;
     this.lng = place.lng;
     this.place_name = place.name;
@@ -80,11 +87,9 @@ export class AppComponent {
    * Remove a place from list
    * @param place Object
    */
-  removePlace(place) {
-    const i = this.places.indexOf(place);
-    this.places.splice(i, 1);
-
-    this.storage.updateStorage(this.places); // Update localstorage on removal of list item
+  async removePlace(place) {
+    const i = this.places.findIndex(place);
+    i.subscribe((index: number) => this.store.dispatch(new PlacesActions.RemovePlace(index)));
   }
 
   /**
@@ -93,7 +98,7 @@ export class AppComponent {
    */
   @HostListener('window:beforeunload', ['$event'])
   beforeunloadHandler(event) {
-    this.storage.updateStorage(this.places); // Update localstorage on exit
+    // this.storage.updateStorage(this.places);
   }
 
 }

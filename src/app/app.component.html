@@ -12,7 +12,7 @@
           <mat-card-title>Your Places</mat-card-title>
           <mat-card-content style="max-height: 60vh;">
             <mat-list class="mat-list">
-              <mat-list-item *ngFor="let place of places">
+              <mat-list-item *ngFor="let place of places | async">
                 <div class="item-title">{{place.name}}</div>
                 <div>
                   <button class="goto-btn" mat-raised-button (click)="goToPlace(place)">Go to!</button>
