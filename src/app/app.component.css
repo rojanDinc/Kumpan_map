@@ -1,6 +1,3 @@
-.color{
-
-}
 agm-map{
   width: 100%;
   height: 50vh;
@@ -33,9 +30,6 @@ mat-card{
 
 .item{
   display: inline-block;
-}
-.item-title{
-  width: 35.7px;
 }
 
 .goto-btn{

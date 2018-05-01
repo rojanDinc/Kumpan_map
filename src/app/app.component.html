@@ -41,18 +41,11 @@
                   <mat-form-field>
                       <input #placeInput autofocus matInput placeholder="Place name?" (keyup.enter)="onInputAdd(placeInput.value)">
                   </mat-form-field>
-                  <button class="btn-margin" (click)="onInputAdd(placeInput.value)" mat-raised-button>Add</button>
+                  <button class="btn-margin" (click)="onInputAdd(placeInput.value)" mat-raised-button>Save</button>
               </agm-info-window>
 
               <!-- Marker for saved places -->
-              <agm-info-window
-                  *ngFor="let place of places;" 
-                  [latitude]="place.lat" 
-                  [longitude]="place.lng"
-                  [isOpen]="true"
-                  [zIndex]="100"
-                >{{place.name}}
-              </agm-info-window>
+              <agm-info-window #markerWindow [latitude]="lat" [longitude]="lng" [isOpen]="false" [zIndex]="100">{{place_name}}</agm-info-window>
             </agm-map>
           </mat-card-content>
         </mat-card>

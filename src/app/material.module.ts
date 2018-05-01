@@ -1,3 +1,7 @@
+/**
+ * UI module
+ * Handles all modules from "angular-material" plugin
+ */
 import { NgModule } from '@angular/core';
 
 import {

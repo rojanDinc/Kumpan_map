@@ -11,12 +11,14 @@ import { StorageService } from './storage.service';
 
 // Components
 import { AppComponent } from './app.component';
+import { SearchPipe } from './search.pipe';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,

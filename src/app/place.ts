@@ -1,4 +1,6 @@
-// For type safety
+/**
+ * For type safety
+ */
 export interface Place {
   name: string;
   lat: number;
