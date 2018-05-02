@@ -1,4 +1,9 @@
+/**
+ * UI module
+ * Handles all modules from "angular-material" plugin
+ */
 import { NgModule } from '@angular/core';
+import {LayoutModule} from '@angular/cdk/layout';
 
 import {
   MatButtonModule,
@@ -9,6 +14,11 @@ import {
   MatSidenavModule,
   MatGridListModule,
   MatListModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  ShowOnDirtyErrorStateMatcher,
+  ErrorStateMatcher,
 } from '@angular/material';
 
 @NgModule({
@@ -21,6 +31,10 @@ import {
     MatSidenavModule,
     MatGridListModule,
     MatListModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    LayoutModule,
   ],
   exports: [
     MatButtonModule,
@@ -31,6 +45,13 @@ import {
     MatSidenavModule,
     MatGridListModule,
     MatListModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    LayoutModule,
+  ],
+  providers: [
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ]
 })
 export class MaterialModule {}

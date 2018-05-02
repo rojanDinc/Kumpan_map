@@ -10,11 +10,8 @@ body {
   align-items: start !important;
 }
 
-.map-list{
-  height: inherit;
-  overflow: auto;
-}
-
 .mat-list-item-content{
   justify-content: space-between;
+  margin-top: 10px !important; 
+  margin-bottom: 10px !important;
 }
