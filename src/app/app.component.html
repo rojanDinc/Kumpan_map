@@ -1,10 +1,33 @@
-<mat-drawer-container style="height:100vh;">
-  <mat-drawer mode="side" opened="true" id="drawer">
+<mat-toolbar class="sticky-top">
+    <img src="../assets/kumpan-icon.png" width="50" height="40" >
+    <div class="user">
+        <i class="material-icons">notifications</i>
+      <span>John Doe</span>
+      <i class="material-icons" style="font-size: 40px; color:#bebebe;">account_circle</i>
+      <i class="material-icons">sort</i>
+    </div>
+  </mat-toolbar>
+  <mat-drawer-container style="height:100vh;">
+    <mat-drawer mode="side" opened="true" id="drawer">
+      <div class="container-fluid">
+        <div class="row">
+        <ul class="light-text">
+          <li *ngFor="let item of sidenav" [ngClass]="{'light-item': item.name == 'Map'}">
+            <div>
+              <i class="material-icons">{{item.icon}}</i>
+              <span>{{item.name}}</span>
+            </div>
+            <div>
+              <i class="material-icons">keyboard_arrow_right</i>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </mat-drawer>
   
   <mat-drawer-content>
-    <mat-toolbar><h1>Dashboard</h1></mat-toolbar>
-    <div class="container-fluid">
+        <div class="container-fluid">
       <div class="row">
         <div class="col-md-6 col-lg-5 col-xl-4">
             <mat-card id="list-card">
@@ -65,6 +88,5 @@
         </div>
       </div>
     </div>
-
   </mat-drawer-content>
-</mat-drawer-container>
+  </mat-drawer-container>
