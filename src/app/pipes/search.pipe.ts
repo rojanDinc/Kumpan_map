@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'search'
+  name: 'filter'
 })
 export class SearchPipe implements PipeTransform {
 
-  transform(value: any, keys: string, term: string): any {
+  transform(value, keys: string, term: string) {
+
     if (!term) {
       return value;
     }

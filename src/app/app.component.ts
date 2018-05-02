@@ -35,11 +35,12 @@ export class AppComponent {
   private lat = 59.329324;
   private lng = 18.068581;
   // Form Validation
+  private query: string;
   private place_name: string;
   private matcher = new MyErrorStateMatcher();
   placeFormControl = new FormControl('', [
     Validators.required,
-    Validators.pattern('^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$'),
+    Validators.pattern('^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$'), // A string can contain a combination of numbers, letters and spaces
   ]);
   // Temp list for storing places from localstorage
   places: Observable<Place>;

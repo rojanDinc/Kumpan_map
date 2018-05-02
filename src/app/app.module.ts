@@ -14,12 +14,16 @@ import { reducer } from './reducers/places.reducer';
 
 // Components
 import { AppComponent } from './app.component';
+
+// Pipes
 import { SearchPipe } from './pipes/search.pipe';
+import { ReversePipe } from './pipes/reverse.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchPipe,
+    ReversePipe,
   ],
   imports: [
     BrowserModule,

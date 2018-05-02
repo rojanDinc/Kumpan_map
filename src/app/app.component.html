@@ -3,15 +3,18 @@
   </mat-drawer>
   
   <mat-drawer-content>
-    <mat-toolbar>Kumpan map</mat-toolbar>
+    <mat-toolbar><h1>Dashboard</h1></mat-toolbar>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-md-6 col-lg-5 col-xl-4">
             <mat-card id="list-card">
                 <mat-card-title>Your Places</mat-card-title>
-                <mat-card-content style="max-height: 60vh;">
+                  <mat-form-field style="width:100%;">
+                    <input matInput [(ngModel)]="query" placeholder="Search...">
+                  </mat-form-field>
+                <mat-card-content style="max-height: 319px;">
                   <mat-list class="mat-list">
-                    <mat-list-item *ngFor="let place of places | async; let i = index">
+                    <mat-list-item *ngFor="let place of places | async | reverse | filter:'name':query; let i = index">
                       <div class="item-title">{{place.name}}</div>
                       <div>
                         <button class="goto-btn" mat-raised-button (click)="goToPlace(place)">Go to!</button>
@@ -23,7 +26,7 @@
                 </mat-card-content>
               </mat-card>
         </div>
-        <div class="col-lg-8">
+        <div class="col-md-6 col-lg-7 col-xl-8">
             <mat-card>
                 <mat-card-content>
                   <agm-map 
