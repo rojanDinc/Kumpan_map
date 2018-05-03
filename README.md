@@ -44,8 +44,10 @@ Navigate to http://localhost:4200/ in your browser
 - [twbs/bootstrap](https://github.com/twbs/bootstrap) - The most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web.
 
 ## Thoughts 
-
-
+The creation of this project was neither too hard or easy. There are plenty of documentation of the different libraries used.
+First decision was to either use ReactJs or Angular, I went with Angular for its TypeScript language.
+There are different libraries to choose from when you need a specific type of plugin and to narrow down my choice I always start with reading about the libraries and get a better understanding of which one to choose for my work.
+I've learned from working with this project and feel free to test it and share your thoughts.
 
 ## Authors
 
