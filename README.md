@@ -1,27 +1,62 @@
-# KumpanMapAngular
+# Kumpan Map Assignment
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+An Single Page Application made with Angular to save places in a list by interacting with Google Map API
 
-## Development server
+![](header.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Getting Started
 
-## Code scaffolding
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Prerequisites
 
-## Build
+#### NOTE
+The below setup instructions assume you have added local npm bin folders to your path. If this is not the case you will need to install the Angular CLI globally.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+#### Installing
 
-## Running unit tests
+These are the steps for installing the application onto your system.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+# clone the repo
+git clone https://github.com/rojanDinc/Kumpan_map.git
 
-## Running end-to-end tests
+# change directory to repo
+cd kumpan-map-angular
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+# Use npm or yarn to install the dependencies:
+npm install
 
-## Further help
+# OR
+yarn
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# start the server
+ng serve
+```
+Navigate to http://localhost:4200/ in your browser
+
+## Built With
+
+- [SebastianM/angular-google-maps](https://github.com/SebastianM/angular-google-maps) - Angular 2+ Google Maps Components
+- [ngrx/store](https://github.com/ngrx/store) - RxJS powered state management for Angular apps, inspired by Redux
+- [ngrx/store-devtools](https://github.com/ngrx/store-devtools) - Instrumentation for @ngrx/store enabling time-travel debugging
+- [angular/material2](https://github.com/angular/material2) - Material Design components for Angular
+- [twbs/bootstrap](https://github.com/twbs/bootstrap) - The most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web.
+
+## Thoughts 
+The creation of this project was neither too hard or easy. There are plenty of documentation of the different libraries used.
+First decision was to either use ReactJs or Angular, I went with Angular for its TypeScript language.
+There are different libraries to choose from when you need a specific type of plugin and to narrow down my choice I always start with reading about the libraries and get a better understanding of which one to choose for my work.
+I've learned from working with this project and feel free to test it and share your thoughts.
+
+## Authors
+
+* **Rojan Dinc**
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Thanks to kumpan for giving me this opportunity
