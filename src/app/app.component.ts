@@ -9,6 +9,7 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import { MouseEvent, GoogleMapsAPIWrapper, MapTypeStyle, AgmMap, AgmInfoWindow } from '@agm/core';
 import * as PlacesActions from './actions/places.actions';
 import { MatGridTile } from '@angular/material';
+import { panel_list } from './models/panel_items';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -34,6 +35,7 @@ export class AppComponent {
   // Coords for the position of Stockholm and helper variables
   private lat = 59.329324;
   private lng = 18.068581;
+  private map_zoom = 11;
   // Form Validation
   private query: string;
   private place_name: string;
@@ -44,6 +46,8 @@ export class AppComponent {
   ]);
   // Temp list for storing places from localstorage
   places: Observable<Place>;
+  // Sidenav items
+  sidenav = panel_list;
   /**
    * @param renderer
    * @param storage
@@ -88,7 +92,7 @@ export class AppComponent {
   goToPlace(place) {
     this.map.latitude = place.lat;
     this.map.longitude = place.lng;
-    this.map.triggerResize();
+    this.map_zoom = 15;
     this.lat = place.lat;
     this.lng = place.lng;
     this.place_name = place.name;

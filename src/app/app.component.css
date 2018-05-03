@@ -3,8 +3,52 @@ agm-map{
   height: 437px;
 }
 
+.user{
+  display: inline-flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 300px;
+  font-weight: lighter;
+}
+
+mat-toolbar{
+  flex: inline-flex;
+  justify-content: space-between;
+}
+
+ul{
+  list-style-type: none;
+  font-weight: 100;
+  padding-left: 0;
+  margin-top: 20px;
+  width: 100%;
+}
+
+ul:hover{
+  cursor: pointer;
+}
+
+li{
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  padding-left:24px;
+}
+li>div>i{
+  font-size: 14px;
+}
+.light-item{
+  color: #475266;
+  background: #fff;
+}
+
+i{
+  margin-right: 5px;
+}
+
 mat-toolbar{
   box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  background: #fff;
 }
 
 button{
@@ -13,14 +57,31 @@ button{
   min-width: 0;
 }
 
+#panel-heading{
+  font-weight: lighter;
+}
+
+.panel-item{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
 mat-card{
   width: 100%;
   margin-top: 20px;
 }
 
+.light-text{
+  color: #fff;
+}
+
 #drawer{
   width: 250px;
   background: #485367;
+  position:fixed;
+  margin-top:64px;
 }
 
 #list-card{
