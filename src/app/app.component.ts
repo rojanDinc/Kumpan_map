@@ -35,6 +35,7 @@ export class AppComponent {
   // Coords for the position of Stockholm and helper variables
   private lat = 59.329324;
   private lng = 18.068581;
+  private map_zoom = 11;
   // Form Validation
   private query: string;
   private place_name: string;
@@ -91,7 +92,7 @@ export class AppComponent {
   goToPlace(place) {
     this.map.latitude = place.lat;
     this.map.longitude = place.lng;
-    this.map.triggerResize();
+    this.map_zoom = 15;
     this.lat = place.lat;
     this.lng = place.lng;
     this.place_name = place.name;

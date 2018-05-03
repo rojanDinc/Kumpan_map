@@ -1,7 +1,7 @@
 <mat-toolbar class="sticky-top">
     <img src="../assets/kumpan-icon.png" width="50" height="40" >
     <div class="user">
-        <i class="material-icons">notifications</i>
+        <i style="color:gold;" class="material-icons">notifications</i>
       <span>John Doe</span>
       <i class="material-icons" style="font-size: 40px; color:#bebebe;">account_circle</i>
       <i class="material-icons">sort</i>
@@ -18,6 +18,7 @@
               <span>{{item.name}}</span>
             </div>
             <div>
+              <span *ngIf="item.badge" class="badge badge-info">{{item.badgeContent}}</span>
               <i class="material-icons">keyboard_arrow_right</i>
             </div>
           </li>
@@ -56,7 +57,7 @@
                     #map
                     [latitude]="lat" 
                     [longitude]="lng"
-                    [zoom]="11"
+                    [zoom]="map_zoom"
                     (mapClick)="_onMapClick($event)">
                     <!-- Marker for new places -->
                     <agm-info-window [latitude]="lat" [longitude]="lng" [zIndex]="188"  #infoWindow>

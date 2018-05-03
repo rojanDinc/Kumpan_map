@@ -9,8 +9,8 @@ export const panel_list = [
   {
     name: 'Schedule',
     icon: 'update',
-    badge: false,
-    badgeContent: 1,
+    badge: true,
+    badgeContent: 2,
     badgeType: '',
   },
   {
@@ -44,9 +44,9 @@ export const panel_list = [
   {
     name: 'Team Chat',
     icon: 'forum',
-    badge: false,
+    badge: true,
     badgeContent: 12,
-    badgeType: '',
+    badgeType: 'badge-info',
   },
   {
     name: 'Extras',
