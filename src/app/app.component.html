@@ -1,3 +1,4 @@
+<!-- Navbar -->
 <mat-toolbar class="sticky-top">
     <img src="../assets/kumpan-icon.png" width="50" height="40" >
     <div class="user">
@@ -12,6 +13,7 @@
       <div class="container-fluid">
         <div class="row">
         <ul class="light-text">
+          <!-- List of links in sidenav -->
           <li *ngFor="let item of sidenav" [ngClass]="{'light-item': item.name == 'Map'}">
             <div>
               <i class="material-icons">{{item.icon}}</i>
@@ -26,7 +28,7 @@
       </div>
     </div>
   </mat-drawer>
-  
+  <!-- Main content of screen -->
   <mat-drawer-content>
         <div class="container-fluid">
       <div class="row">
