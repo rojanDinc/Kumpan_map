@@ -24,7 +24,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  // Binding html elements to use in code
+  // Binding html elements to variables
   @ViewChild('map', {read: AgmMap}) map: AgmMap;
   @ViewChild('infoWindow', {read: AgmInfoWindow}) infoWindow: AgmInfoWindow;
   @ViewChild('markerWindow') markerWindow: AgmInfoWindow;
@@ -32,6 +32,8 @@ export class AppComponent {
   @ViewChild('listGridTile') listGridTile: MatGridTile;
   @ViewChild('mapGridTile') mapGridTile: MatGridTile;
 
+  // Input place dialog open or close variable
+  private infoWindow_open = false;
   // Coords for the position of Stockholm and helper variables
   private lat = 59.329324;
   private lng = 18.068581;
@@ -63,7 +65,7 @@ export class AppComponent {
    * @param $event
    */
   _onMapClick($event: MouseEvent) {
-    this.infoWindow.open();
+    this.infoWindow_open = true;
     this.lat = $event.coords.lat;
     this.lng = $event.coords.lng;
   }
@@ -75,7 +77,7 @@ export class AppComponent {
   onInputAdd(value) {
     if (!this.placeFormControl.hasError('pattern') && !this.placeFormControl.hasError('required')) {
       this.renderer.setProperty(this.placeInput.nativeElement, 'value', '');
-      this.infoWindow.close();
+      this.infoWindow_open = false;
 
       this.store.dispatch(new PlacesActions.AddPlace({
         name: value,
@@ -90,6 +92,9 @@ export class AppComponent {
    * @param place Object
    */
   goToPlace(place) {
+    if (this.infoWindow_open) {
+      this.infoWindow_open = false;
+    }
     this.map.latitude = place.lat;
     this.map.longitude = place.lng;
     this.map_zoom = 15;

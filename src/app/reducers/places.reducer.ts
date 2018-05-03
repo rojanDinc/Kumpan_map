@@ -31,6 +31,7 @@ const initialState: Place[] = [
   },
 ];
 
+// Reducer function
 export function reducer(state: Place[] = initialState, action: PlacesActions.Actions) {
   switch (action.type) {
     case PlacesActions.ADD_PLACE:

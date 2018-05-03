@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 /**
- * This pipe helps to show the latest added item in a list.
+ * This pipe reverses the list to show the latest added item in the list.
  */
 
 @Pipe({

@@ -1,3 +1,4 @@
+// Static object for the sidnav links
 export const panel_list = [
   {
     name: 'Dashboard',

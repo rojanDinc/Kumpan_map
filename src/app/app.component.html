@@ -62,7 +62,12 @@
                     [zoom]="map_zoom"
                     (mapClick)="_onMapClick($event)">
                     <!-- Marker for new places -->
-                    <agm-info-window [latitude]="lat" [longitude]="lng" [zIndex]="188"  #infoWindow>
+                    <agm-info-window 
+                      #infoWindow
+                      [latitude]="lat"
+                      [longitude]="lng"
+                      [isOpen]="infoWindow_open"
+                      [zIndex]="188">
                         <mat-form-field>
                             <input 
                               #placeInput

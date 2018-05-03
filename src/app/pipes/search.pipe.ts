@@ -1,5 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+ * This pipe is used as a search filter for the search field.
+ */
+
 @Pipe({
   name: 'filter'
 })
