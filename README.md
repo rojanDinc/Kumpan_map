@@ -13,6 +13,8 @@ These instructions will get you a copy of the project up and running on your loc
 #### NOTE
 The below setup instructions assume you have added local npm bin folders to your path. If this is not the case you will need to install the Angular CLI globally.
 
+Before you begin the installation aquire a key from [Google Maps API](https://developers.google.com/maps/documentation/javascript/get-api-key)
+
 #### Installing
 
 These are the steps for installing the application onto your system.
@@ -32,6 +34,9 @@ yarn
 
 # start the server
 ng serve
+
+# API KEY
+Aquire a key from Google Maps API and navigate to app.module.ts and put your key in the "AgmCoreModule.forRoot({ apiKey: 'YOUR KEY HERE' })".
 ```
 Navigate to http://localhost:4200/ in your browser
 
