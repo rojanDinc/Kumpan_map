@@ -30,7 +30,7 @@ import { ReversePipe } from './pipes/reverse.pipe';
     MaterialModule,
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDzUfBbEi4kaUSaOkTlWnDLYA7bJ6rVtBU'
+      apiKey: 'YOUR KEY HERE'
     }),
     StoreModule.forRoot({
       _places: reducer,
